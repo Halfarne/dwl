@@ -1,0 +1,69 @@
+From 3f12f21b26634a761a274ff5988a77d7ff4b0d1d Mon Sep 17 00:00:00 2001
+From: Julia <juliag2@protonmail.com>
+Date: Fri, 3 Dec 2021 23:03:01 +0100
+Subject: [PATCH] Added the Alphafocus patch!
+
+---
+ config.def.h | 2 ++
+ dwl.c        | 6 +++++-
+ 2 files changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/config.def.h b/config.def.h
+index 089aa379..f6a72689 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -4,6 +4,8 @@ static const unsigned int borderpx  = 1;  /* border pixel of windows */
+ static const float rootcolor[]      = {0.3, 0.3, 0.3, 1.0};
+ static const float bordercolor[]    = {0.5, 0.5, 0.5, 1.0};
+ static const float focuscolor[]     = {1.0, 0.0, 0.0, 1.0};
++static const float unfocussedalpha  = 0.675;
++static const float focussedalpha    = 0.825;
+ 
+ /* tagging */
+ static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+diff --git a/dwl.c b/dwl.c
+index 6303c25f..c61fb4df 100644
+--- a/dwl.c
++++ b/dwl.c
+@@ -206,6 +206,7 @@ struct render_data {
+ 	struct wlr_output *output;
+ 	struct timespec *when;
+ 	int x, y; /* layout-relative */
++	float alpha;
+ };
+ 
+ /* function declarations */
+@@ -1647,7 +1648,7 @@ render(struct wlr_surface *surface, int sx, int sy, void *data)
+ 
+ 	/* This takes our matrix, the texture, and an alpha, and performs the actual
+ 	 * rendering on the GPU. */
+-	wlr_render_texture_with_matrix(drw, texture, matrix, 1);
++	wlr_render_texture_with_matrix(drw, texture, matrix, rdata->alpha);
+ 
+ 	/* This lets the client know that we've displayed that frame and it can
+ 	 * prepare another one now if it likes. */
+@@ -1704,6 +1705,7 @@ renderclients(Monitor *m, struct timespec *now)
+ 		rdata.when = now;
+ 		rdata.x = c->geom.x + c->bw;
+ 		rdata.y = c->geom.y + c->bw;
++		rdata.alpha = (c == sel) ? focussedalpha : unfocussedalpha;
+ 		client_for_each_surface(c, render, &rdata);
+ 	}
+ }
+@@ -1718,6 +1720,7 @@ renderlayer(struct wl_list *layer_surfaces, struct timespec *now)
+ 			.when = now,
+ 			.x = layersurface->geo.x,
+ 			.y = layersurface->geo.y,
++			.alpha = 1.0,
+ 		};
+ 
+ 		wlr_surface_for_each_surface(layersurface->layer_surface->surface,
+@@ -2521,6 +2524,7 @@ renderindependents(struct wlr_output *output, struct timespec *now)
+ 		rdata.when = now;
+ 		rdata.x = c->surface.xwayland->x;
+ 		rdata.y = c->surface.xwayland->y;
++		rdata.alpha = 1.0;
+ 		wlr_surface_for_each_surface(c->surface.xwayland->surface, render, &rdata);
+ 	}
+ }
+
