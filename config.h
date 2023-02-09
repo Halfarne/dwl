@@ -104,14 +104,15 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *termcmd[] = { "foot", NULL };
-static const char *menucmd[] = { "bemenu-run", NULL };
+static const char *termcmd[] = { "kitty", NULL };
+static const char *ff[] = { "firefox", NULL };
+static const char *rofi[] = { "rofi -show drun", NULL };
 
 static const Key keys[] = {
 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
 	/* modifier                  key                 function        argument */
-	{ MODKEY,                    XKB_KEY_a,          spawn,          {.v = kitty} },
-	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_f,		 spawn,          {.v = firefox} },
+	{ MODKEY,                    XKB_KEY_a,          spawn,          {.v = termcmd} },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_f,		 spawn,          {.v = ff} },
 	{ MODKEY,                    XKB_KEY_j,          focusstack,     {.i = +1} },
 	{ MODKEY,                    XKB_KEY_k,          focusstack,     {.i = -1} },
 	{ MODKEY,                    XKB_KEY_i,          incnmaster,     {.i = +1} },
@@ -120,10 +121,10 @@ static const Key keys[] = {
 	{ MODKEY,                    XKB_KEY_Tab,        view,           {0} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_k,          killclient,     {0} },
 	{ MODKEY,                    XKB_KEY_t,          setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                    XKB_KEY_space,      setlayout,      {0} },
+	{ MODKEY,                    XKB_KEY_space,      spawn,          {.v = rofi} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_v,		 togglefloating, {0} },
 	{ MODKEY,                    XKB_KEY_l,		 togglefullscreen,{0} },
-	{ MODKEY|WLR_MODIFIER_ALT,   XKB_KEY_Q,		 quit,           {0} },
+	{ MODKEY|WLR_MODIFIER_ALT,   XKB_KEY_q,		 quit,           {0} },
 
 	/* Ctrl-Alt-Backspace and Ctrl-Alt-Fx used to be handled by X server */
 	{ WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT,XKB_KEY_Terminate_Server, quit, {0} },
