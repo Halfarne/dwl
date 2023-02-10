@@ -1,3 +1,11 @@
+# this is my fork - things might work for others or might not :)
+build on nix with - `nix-build -E "with import <nixpkgs> {}; callPackage ./dwl.nix {}"`
+
+- dwl.nix is cofigured for this repo, copied and litle changed from default.nix from nixpkgs.
+- can be used (probably) with others forks, or a custom one - I am writing this here, because i had a hard time figuring how to build it on nix
+
+
+
 # dwl - dwm for Wayland
 
 Join us on our [Discord server] or at [#dwl] on irc.libera.chat.
