@@ -107,7 +107,7 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 /* commands */
 static const char *term[] = { "kitty", NULL };
 static const char *menu[] = { "rofi -show drun", NULL };
-static const char *browser[] = { "firefox", NULL };
+static const char *browser[] = { "bemenu-run", NULL };
 
 static const Key keys[] = {
 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
@@ -117,7 +117,9 @@ static const Key keys[] = {
 	{ MODKEY,		     XKB_KEY_f,		 spawn,          {.v = browser} },
 
 	{ MODKEY,		     XKB_KEY_k,          killclient,     {0} },
-	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_v,          setlayout,      {.v = &layouts[0]} },
+	{ MODKEY|WLR_MODIFIER_ALT,   XKB_KEY_t,		 setlayout,      {.v = &layouts[0]} },
+	{ MODKEY|WLR_MODIFIER_ALT,   XKB_KEY_v,		 setlayout,      {.v = &layouts[1]} },
+	{ MODKEY|WLR_MODIFIER_ALT,   XKB_KEY_m,		 setlayout,      {.v = &layouts[2]} },
 
 	{ MODKEY,		     XKB_KEY_v,		 togglefloating, {0} },
 	{ MODKEY,                    XKB_KEY_l,          togglefullscreen, {0} },

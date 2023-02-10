@@ -28,7 +28,7 @@ stdenv.mkDerivation (self: {
 
  src = fetchgit {
     url = "https://github.com/Halfarne/dwl.git";
-    sha256 = "sha256-SVLOJGPISmeIyFLuMUDyi4trhs2XMropFd+bFnBJPdQ=";
+    sha256 = "sha256-ayGidlcJyb3dkZgPSb6xDNwlzRoiKx33geIsi0l99QA=";
   }; 
 
   nativeBuildInputs = [
