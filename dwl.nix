@@ -21,7 +21,7 @@ stdenv.mkDerivation {
         xwayland
         seatd
     ];
-    NIX_CFLAGS_COMPILE = [ "-DXWAYLAND=1" ];
+    NIX_CFLAGS_COMPILE = [ "-DXWAYLAND=0" ];
     makeFlags = [
         "PREFIX=${placeholder "out"}"
     ];
