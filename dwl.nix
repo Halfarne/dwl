@@ -1,28 +1,66 @@
-{stdenv, fetchFromGitHub, fetchgit, meson, ninja, scdoc, pkg-config, libuuid, wlroots_0_16, wayland, libinput, libGL, pixman, libxkbcommon, wayland-protocols, libxcb, libX11, xwayland, polkit, seatd}:
+{ lib
+, stdenv
+, fetchgit
+, installShellFiles
+, libX11
+, libinput
+, libxcb
+, libxkbcommon
+, pixman
+, pkg-config
+, substituteAll
+, wayland
+, wayland-protocols
+, wlroots_0_16
+, writeText
+, xcbutilwm
+, xwayland
+, enableXWayland ? true
 
-stdenv.mkDerivation {
-    pname = "dwl";
-    version = "0.4";
-    src = ./.;
-    nativeBuildInputs = [
-        pkg-config
-        wayland
-    ];
-    buildInputs = [
-        wayland
-        wlroots_0_16
-        wayland-protocols
-        libinput
-        libGL
-        pixman
-        libxkbcommon
-        libxcb
-        libX11
-        xwayland
-        seatd
-    ];
-    NIX_CFLAGS_COMPILE = [ "-DXWAYLAND=0" ];
-    makeFlags = [
-        "PREFIX=${placeholder "out"}"
-    ];
-}
+}:
+
+let
+  wlroots = wlroots_0_16;
+in
+stdenv.mkDerivation (self: {
+  pname = "dwl";
+  version = "0.4.0";
+
+ src = fetchgit {
+    url = "https://github.com/Halfarne/dwl.git";
+    sha256 = "sha256-SVLOJGPISmeIyFLuMUDyi4trhs2XMropFd+bFnBJPdQ=";
+  }; 
+
+  nativeBuildInputs = [
+    installShellFiles
+    pkg-config
+  ];
+
+  buildInputs = [
+    libinput
+    libxcb
+    libxkbcommon
+    pixman
+    wayland
+    wayland-protocols
+    wlroots
+  ] ++ lib.optionals enableXWayland [
+    libX11
+    xcbutilwm
+    xwayland
+  ];
+
+  outputs = [ "out" "man" ];
+
+  preBuild = ''
+    makeFlagsArray+=(
+      XWAYLAND=${if enableXWayland then "-DXWAYLAND" else ""}
+      XLIBS=${if enableXWayland then "xcb\\ xcb-icccm" else ""}
+    )
+  '';
+
+  installFlags = [
+    "PREFIX=$(out)"
+    "MANDIR=$(man)/share/man/man1"
+  ];
+})
