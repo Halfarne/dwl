@@ -45,6 +45,7 @@ static const struct xkb_rule_names xkb_rules = {
 	/* example:
 	.options = "ctrl:nocaps",
 	*/
+	.layout = "cz",
 	.options = NULL,
 };
 
@@ -107,11 +108,11 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 
 /* commands */
 static const char *term[] = { "kitty", NULL };
-static const char *menu[] = { "rofi -show drun", NULL };
-static const char *browser[] = { "bemenu-run", NULL };
-static const char *volp[] = { "pamixer -i 5", NULL };
-static const char *volm[] = { "pamixer -d 5", NULL };
-static const char *tmic[] = { "pamixer --source alsa_input.pci-0000_0a_00.3.analog-stereo -t", NULL };
+static const char *menu[] = { "rofi", "-show", "drun", NULL };
+static const char *browser[] = { "firefox", NULL };
+static const char *volp[] = { "pamixer", "-i", "5", NULL };
+static const char *volm[] = { "pamixer", "-d", "5", NULL };
+static const char *tmic[] = { "pamixer", "--source", "alsa_input.pci-0000_0a_00.3.analog-stereo", "-t", NULL };
 
 
 static const Key keys[] = {
