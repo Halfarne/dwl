@@ -108,8 +108,14 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 
 /* commands */
 static const char *term[] = { "kitty", NULL };
-static const char *menu[] = { "rofi", "-show", "drun", NULL };
 static const char *browser[] = { "firefox", NULL };
+
+static const char *menu[] = { "rofi", "-show", "drun", NULL };
+static const char *menu[] = { "rofi", "-show", "power-menu", "-modi", "power-menu:/~/.config/rofi/rofi-power-menu", NULL };
+static const char *menu[] = { "rofi", "-show", "Pomoc", "-modi", "Pomoc:/~/.config/rofi/rofi-help-tab", NULL };
+
+static const char *menu[] = { "~/.config/screenshot.sh", NULL };
+
 static const char *volp[] = { "pamixer", "-i", "5", NULL };
 static const char *volm[] = { "pamixer", "-d", "5", NULL };
 static const char *tmic[] = { "pamixer", "--source", "alsa_input.pci-0000_0a_00.3.analog-stereo", "-t", NULL };
@@ -121,10 +127,14 @@ static const Key keys[] = {
 	{ MODKEY,                    XKB_KEY_space,	 spawn,          {.v = menu} },
 	{ MODKEY,		     XKB_KEY_a,		 spawn,          {.v = term} },
 	{ MODKEY,		     XKB_KEY_f,		 spawn,          {.v = browser} },
+	{ MODKEY,		     XKB_KEY_s,		 spawn,          {.v = power} },
+	{ MODKEY,		     XKB_KEY_h,		 spawn,          {.v = help} },
+	{ MODKEY,		     XKB_KEY_o,		 spawn,          {.v = prnscr} },
 
 	{ MODKEY,		     XKB_KEY_k,          killclient,     {0} },
+
 	{ MODKEY|WLR_MODIFIER_ALT,   XKB_KEY_t,		 setlayout,      {.v = &layouts[0]} },
-	{ MODKEY|WLR_MODIFIER_ALT,   XKB_KEY_v,		 setlayout,      {.v = &layouts[1]} },
+	{ MODKEY|WLR_MODIFIER_ALT,   XKB_KEY_f,		 setlayout,      {.v = &layouts[1]} },
 	{ MODKEY|WLR_MODIFIER_ALT,   XKB_KEY_m,		 setlayout,      {.v = &layouts[2]} },
 
 	{ MODKEY,		     XKB_KEY_v,		 togglefloating, {0} },
@@ -132,11 +142,11 @@ static const Key keys[] = {
 
 	{ MODKEY|WLR_MODIFIER_ALT,   XKB_KEY_q,          quit,           {0} },
 
-	TAGKEYS(          XKB_KEY_1, XKB_KEY_q,				  0),
-	TAGKEYS(          XKB_KEY_2, XKB_KEY_w,				  1),
-	TAGKEYS(          XKB_KEY_3, XKB_KEY_e,				  2),
-	TAGKEYS(          XKB_KEY_4, XKB_KEY_r,				  3),
-	TAGKEYS(          XKB_KEY_5, XKB_KEY_t,				  4),
+	TAGKEYS(          XKB_KEY_q, XKB_KEY_Q,				  0),
+	TAGKEYS(          XKB_KEY_w, XKB_KEY_W,				  1),
+	TAGKEYS(          XKB_KEY_e, XKB_KEY_E,				  2),
+	TAGKEYS(          XKB_KEY_r, XKB_KEY_R,				  3),
+	TAGKEYS(          XKB_KEY_t, XKB_KEY_T,				  4),
 
 	/* Ctrl-Alt-Backspace and Ctrl-Alt-Fx used to be handled by X server */
 	{ WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT,XKB_KEY_Terminate_Server, quit, {0} },
@@ -154,6 +164,6 @@ static const Button buttons[] = {
 	{ MODKEY, BTN_EXTRA,	moveresize,     {.ui = CurResize} },*/
 
 	{ 0, BTN_MIDDLE,	spawn,		{.v = tmic} },
-	{ 0, BTN_SIDE,		spawn,		{.v = volp} },
-	{ 0, BTN_EXTRA,		spawn,		{.v = volm} },
+	{ 0, BTN_SIDE,		spawn,		{.v = volm} },
+	{ 0, BTN_EXTRA,		spawn,		{.v = volp} },
 };
