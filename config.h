@@ -111,10 +111,10 @@ static const char *term[] = { "kitty", NULL };
 static const char *browser[] = { "firefox", NULL };
 
 static const char *menu[] = { "rofi", "-show", "drun", NULL };
-static const char *menu[] = { "rofi", "-show", "power-menu", "-modi", "power-menu:/~/.config/rofi/rofi-power-menu", NULL };
-static const char *menu[] = { "rofi", "-show", "Pomoc", "-modi", "Pomoc:/~/.config/rofi/rofi-help-tab", NULL };
+static const char *power[] = { "rofi", "-show", "power-menu", "-modi", "power-menu:/~/.config/rofi/rofi-power-menu", NULL };
+static const char *help[] = { "rofi", "-show", "Pomoc", "-modi", "Pomoc:/~/.config/rofi/rofi-help-tab", NULL };
 
-static const char *menu[] = { "~/.config/screenshot.sh", NULL };
+static const char *prnscr[] = { "~/.config/screenshot.sh", NULL };
 
 static const char *volp[] = { "pamixer", "-i", "5", NULL };
 static const char *volm[] = { "pamixer", "-d", "5", NULL };
