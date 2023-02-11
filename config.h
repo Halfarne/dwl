@@ -108,6 +108,10 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 static const char *term[] = { "kitty", NULL };
 static const char *menu[] = { "rofi -show drun", NULL };
 static const char *browser[] = { "bemenu-run", NULL };
+static const char *volp[] = { "pamixer -i 5", NULL };
+static const char *volm[] = { "pamixer -d 5", NULL };
+static const char *tmic[] = { "pamixer --source alsa_input.pci-0000_0a_00.3.analog-stereo -t", NULL };
+
 
 static const Key keys[] = {
 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
@@ -126,6 +130,12 @@ static const Key keys[] = {
 
 	{ MODKEY|WLR_MODIFIER_ALT,   XKB_KEY_q,          quit,           {0} },
 
+	TAGKEYS(          XKB_KEY_1, XKB_KEY_q,				  0),
+	TAGKEYS(          XKB_KEY_2, XKB_KEY_w,				  1),
+	TAGKEYS(          XKB_KEY_3, XKB_KEY_e,				  2),
+	TAGKEYS(          XKB_KEY_4, XKB_KEY_r,				  3),
+	TAGKEYS(          XKB_KEY_5, XKB_KEY_t,				  4),
+
 	/* Ctrl-Alt-Backspace and Ctrl-Alt-Fx used to be handled by X server */
 	{ WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT,XKB_KEY_Terminate_Server, quit, {0} },
 #define CHVT(n) { WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT,XKB_KEY_XF86Switch_VT_##n, chvt, {.ui = (n)} }
@@ -134,7 +144,14 @@ static const Key keys[] = {
 };
 
 static const Button buttons[] = {
-	{ MODKEY, BTN_LEFT,   moveresize,     {.ui = CurMove} },
-	{ MODKEY, BTN_MIDDLE, togglefloating, {0} },
-	{ MODKEY, BTN_RIGHT,  moveresize,     {.ui = CurResize} },
+	{ MODKEY, BTN_LEFT,	moveresize,     {.ui = CurMove} },
+	{ MODKEY, BTN_MIDDLE,	togglefloating, {0} },
+	{ MODKEY, BTN_RIGHT,	moveresize,     {.ui = CurResize} },
+
+	/*{ MODKEY, BTN_SIDE,	moveresize,     {.ui = CurResize} },
+	{ MODKEY, BTN_EXTRA,	moveresize,     {.ui = CurResize} },*/
+
+	{ 0, BTN_MIDDLE,	spawn,		{.v = tmic} },
+	{ 0, BTN_SIDE,		spawn,		{.v = volp} },
+	{ 0, BTN_EXTRA,		spawn,		{.v = volm} },
 };
