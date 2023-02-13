@@ -122,7 +122,7 @@ static const char *menu[] = { "rofi", "-show", "drun", NULL };
 static const char *power[] = { "rofi", "-show", "power-menu", "-modi", "power-menu:/~/.config/rofi/rofi-power-menu", NULL };
 static const char *help[] = { "rofi", "-show", "Pomoc", "-modi", "Pomoc:/~/.config/rofi/rofi-help-tab", NULL };
 
-static const char *prnscr[] = { "~/.config/screenshot.sh", NULL };
+static const char *prnscr[] = { "/bin/sh", "-c", "grim -g \"$(slurp)\"", NULL};
 
 static const char *volp[] = { "pamixer", "-i", "5", NULL };
 static const char *volm[] = { "pamixer", "-d", "5", NULL };
@@ -137,7 +137,7 @@ static const Key keys[] = {
 	{ MODKEY,		     XKB_KEY_f,		 spawn,          {.v = browser} },
 	{ MODKEY,		     XKB_KEY_s,		 spawn,          {.v = power} },
 	{ MODKEY,		     XKB_KEY_h,		 spawn,          {.v = help} },
-	{ MODKEY,		     XKB_KEY_o,		 spawn,          {.v = prnscr} },
+	{ MODKEY,		     XKB_KEY_p,		 spawn,          {.v = prnscr} },
 
 	{ MODKEY,		     XKB_KEY_k,          killclient,     {0} },
 
