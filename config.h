@@ -3,7 +3,15 @@
 /* appearance */
 static const int sloppyfocus               = 1;  /* focus follows mouse */
 static const int bypass_surface_visibility = 0;  /* 1 means idle inhibitors will disable idle tracking even if it's surface isn't visible  */
+static const int monoclegaps               = 0;
 static const unsigned int borderpx         = 2;  /* border pixel of windows */
+
+static const int smartgaps                 = 0;
+static const unsigned int gappih           = 10; /* horiz inner gap between windows */
+static const unsigned int gappiv           = 10; /* vert inner gap between windows */
+static const unsigned int gappoh           = 10; 
+static const unsigned int gappov           = 10;
+
 static const float rootcolor[]             = {0.45, 0.88, 0.95, 1.0};
 static const float bordercolor[]           = {0.45, 0.88, 0.95, 1.0};
 static const float focuscolor[]            = {0.1, 0.6, 0.65, 1.0};
