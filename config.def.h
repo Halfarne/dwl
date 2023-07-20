@@ -28,16 +28,16 @@ static const Rule rules[] = {
 	/* examples:
 	{ "Gimp",     NULL,       0,            1,           -1 },
 	*/
-	{ "firefox",  NULL,       1 << 8,       0,           -1 },
+	{ "firefox",  NULL,       1 << 1,       0,           -1 },
 };
 
 /* layout(s) */
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      dwindle },
+	{ "[]=",      spiral },
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
-	{ "[@]",      spiral },
+	{ "[@]",      dwindle },
 	{ "[\\]",     tile },
 };
 
@@ -60,8 +60,6 @@ static const struct xkb_rule_names xkb_rules = {
     .layout = "cz",
 	.options = NULL,
 };
-
-static const char *kblayouts[] = {"cz"};
 
 /* numlock and capslock */
 static const int numlock = 1;
