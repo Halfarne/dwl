@@ -16,7 +16,7 @@ static const float fullscreen_bg[]         = {0.1, 0.1, 0.1, 1.0};
 /* Autostart */
 static const char *const autostart[] = {
         /*"wbg", "/path/to/your/image", NULL,*/
-        "sh", "-c", "dunst", NULL,
+        "sh", "-c", "kitty", NULL,
         NULL /* terminate */
 };
 
@@ -138,13 +138,13 @@ static const Key keys[] = {
 	{ MODKEY,                    XKB_KEY_a,          spawn,          {.v = termcmd} },
     { MODKEY,                    XKB_KEY_f,          spawn,          {.v = browser} },
     { MODKEY,                    XKB_KEY_s,          spawn,          {.v = power} },
-/*	{ MODKEY,                    XKB_KEY_d,          focusstack,     {.i = +1} },
-	{ MODKEY,                    XKB_KEY_y,          focusstack,     {.i = -1} },*/
+	{ MODKEY,                    XKB_KEY_d,          focusstack,     {.i = +1} },
+	{ MODKEY,                    XKB_KEY_y,          focusstack,     {.i = -1} },
 	{ MODKEY,                    XKB_KEY_x,          incnmaster,     {.i = +1} },
 	{ MODKEY,                    XKB_KEY_c,          incnmaster,     {.i = -1} },
 	{ MODKEY,                    XKB_KEY_b,          setmfact,       {.f = -0.05} },
 	{ MODKEY,                    XKB_KEY_n,          setmfact,       {.f = +0.05} },
-/*	{ MODKEY|WLR_MODIFIER_LOGO,  XKB_KEY_h,          incgaps,       {.i = +1 } },
+	{ MODKEY|WLR_MODIFIER_LOGO,  XKB_KEY_h,          incgaps,       {.i = +1 } },
 	{ MODKEY|WLR_MODIFIER_LOGO,  XKB_KEY_l,          incgaps,       {.i = -1 } },
 	{ MODKEY|WLR_MODIFIER_LOGO|WLR_MODIFIER_SHIFT,   XKB_KEY_H,      incogaps,      {.i = +1 } },
 	{ MODKEY|WLR_MODIFIER_LOGO|WLR_MODIFIER_SHIFT,   XKB_KEY_L,      incogaps,      {.i = -1 } },
@@ -159,7 +159,7 @@ static const Key keys[] = {
 	{ MODKEY|WLR_MODIFIER_LOGO,  XKB_KEY_y,          incohgaps,     {.i = +1 } },
 	{ MODKEY|WLR_MODIFIER_LOGO,  XKB_KEY_o,          incohgaps,     {.i = -1 } },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Y,          incovgaps,     {.i = +1 } },
-	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_O,          incovgaps,     {.i = -1 } },*/
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_O,          incovgaps,     {.i = -1 } },
 	{ MODKEY,                    XKB_KEY_Return,     zoom,           {0} },
 	{ MODKEY,                    XKB_KEY_Tab,        view,           {0} },
 	{ MODKEY,                    XKB_KEY_k,          killclient,     {0} },
@@ -168,15 +168,15 @@ static const Key keys[] = {
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_3,          setlayout,      {.v = &layouts[2]} },
     { MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_4,          setlayout,      {.v = &layouts[3]} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_5,          setlayout,      {.v = &layouts[4]} },
-    /*{ MODKEY,                    XKB_KEY_space,      setlayout,      {0} },*/
+    { MODKEY,                    XKB_KEY_space,      setlayout,      {0} },
 	{ MODKEY,                    XKB_KEY_v,          togglefloating, {0} },
 	{ MODKEY,                    XKB_KEY_l,          togglefullscreen, {0} },
 	{ MODKEY,                    XKB_KEY_0,          view,           {.ui = ~0} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_parenright, tag,            {.ui = ~0} },
 	{ MODKEY,                    XKB_KEY_comma,      focusmon,       {.i = WLR_DIRECTION_LEFT} },
 	{ MODKEY,                    XKB_KEY_period,     focusmon,       {.i = WLR_DIRECTION_RIGHT} },
-/*	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_less,       tagmon,         {.i = WLR_DIRECTION_LEFT} },
-	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_greater,    tagmon,         {.i = WLR_DIRECTION_RIGHT} },*/
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_less,       tagmon,         {.i = WLR_DIRECTION_LEFT} },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_greater,    tagmon,         {.i = WLR_DIRECTION_RIGHT} },
 	TAGKEYS(          XKB_KEY_q, XKB_KEY_q,                          0),
 	TAGKEYS(          XKB_KEY_w, XKB_KEY_w,                          1),
 	TAGKEYS(          XKB_KEY_e, XKB_KEY_e,                          2),
