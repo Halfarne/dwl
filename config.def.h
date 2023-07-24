@@ -196,6 +196,6 @@ static const Button buttons[] = {
 	{ MODKEY, BTN_MIDDLE, togglefloating, {0} },
 	{ MODKEY, BTN_RIGHT,  moveresize,     {.ui = CurResize} },
     /*{ 0, BTN_MIDDLE,	spawn,		{.v = tmic} },*/
-	{ 0, BTN_SIDE,		spawn,		{.v = volup} },
-	{ 0, BTN_EXTRA,		spawn,		{.v = voldown} },
+	{ 0, BTN_EXTRA,		spawn,		{.v = volup} },
+	{ 0, BTN_SIDE,		spawn,		{.v = voldown} },
 };
