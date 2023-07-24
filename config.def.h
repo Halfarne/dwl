@@ -129,6 +129,7 @@ static const char *power[] = { "rofi", "-show", "power-menu", "-modi", "power-me
 static const char *browser[] = { "firefox", NULL };
 static const char *volup[] = { "pamixer", "-i", "5", NULL };
 static const char *voldown[] = { "pamixer", "-d", "5", NULL };
+static const char *tmic[] = { "pamixer", "--source", "82", "-t", NULL}; /*82 - webkamera - mikrofon*/
 
 
 static const Key keys[] = {
@@ -195,7 +196,7 @@ static const Button buttons[] = {
 	{ MODKEY, BTN_LEFT,   moveresize,     {.ui = CurMove} },
 	{ MODKEY, BTN_MIDDLE, togglefloating, {0} },
 	{ MODKEY, BTN_RIGHT,  moveresize,     {.ui = CurResize} },
-    /*{ 0, BTN_MIDDLE,	spawn,		{.v = tmic} },*/
+    { 0, BTN_MIDDLE,	spawn,		{.v = tmic} },
 	{ 0, BTN_EXTRA,		spawn,		{.v = volup} },
 	{ 0, BTN_SIDE,		spawn,		{.v = voldown} },
 };
