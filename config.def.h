@@ -134,7 +134,7 @@ static const char *browser[] = { "firefox", NULL };
 static const char *volup[] = { "pamixer", "-i", "5", NULL };
 static const char *voldown[] = { "pamixer", "-d", "5", NULL };
 static const char *tmic[] = { "pamixer", "--source", "82", "-t", NULL}; /*82 - webkamera - mikrofon*/
-static const char *pms[] = { "kittyr", "pms", NULL };
+static const char *pms[] = { "kitty", "pms", NULL };
 static const char *pulsemixer[] = { "kitty", "pulsemixer", NULL };
 
 static const Key keys[] = {
