@@ -31,8 +31,8 @@ static const Rule rules[] = {
 	*/
 	{ "firefox",  NULL,       1 << 1,         0,          0,           -1 },
     { "kitty",    NULL,       0,              1,          1,           -1 },
-    { "kitty",    "pms",      5,              0,          0,           -1 },
-    { "kitty",  "pulsemixer", 5,              0,          0,           -1 },
+    { "pms",      NULL,       5,              0,          0,           -1 },
+    { "pulsemixer",NULL,      5,              0,          0,           -1 },
 };
 
 /* layout(s) */
@@ -134,7 +134,8 @@ static const char *browser[] = { "firefox", NULL };
 static const char *volup[] = { "pamixer", "-i", "5", NULL };
 static const char *voldown[] = { "pamixer", "-d", "5", NULL };
 static const char *tmic[] = { "pamixer", "--source", "82", "-t", NULL}; /*82 - webkamera - mikrofon*/
-
+static const char *pms[] = { "kittyr", "pms", NULL };
+static const char *pulsemixer[] = { "kitty", "pulsemixer", NULL };
 
 static const Key keys[] = {
 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
@@ -203,4 +204,6 @@ static const Button buttons[] = {
     { 0, BTN_MIDDLE,	spawn,		{.v = tmic} },
 	{ 0, BTN_EXTRA,		spawn,		{.v = volup} },
 	{ 0, BTN_SIDE,		spawn,		{.v = voldown} },
+	{ MODKEY, BTN_EXTRA,		spawn,		{.v = pms} },
+	{ MODKEY, BTN_SIDE,		spawn,		{.v = pulsemixer} },
 };
