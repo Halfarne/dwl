@@ -31,6 +31,8 @@ static const Rule rules[] = {
 	*/
 	{ "firefox",  NULL,       1 << 1,         0,          0,           -1 },
     { "kitty",    NULL,       0,              1,          1,           -1 },
+    { "kitty",    "pms",      5,              0,          0,           -1 },
+    { "kitty",  "pulsemixer", 5,              0,          0,           -1 },
 };
 
 /* layout(s) */
